@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="payment_web_form_template">
+        <title>Payment Form</title>
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container" style="background-color: #f5f5f5; padding: 20px; border-radius: 10px;">
+                    <div class="col-md-12">
+                        <form action="/payment_form/submit" method="post" enctype="multipart/form-data"
+                              class="oe_import">
+                            <div id="payment_form">
+                                <h3 align="center">
+                                    <u>Quick Payment Form</u>
+                                </h3>
+                                <p align="center">
+                                    This page is for the quick payment of fees by new students or present students who
+                                    don't know the admission ID, course, or batch.
+                                </p>
+                                <div class="row">
+                                    <!-- Name of student -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="name_of_student">Name of Student *</label>
+                                            <input id="name_of_student" type="text" class="form-control"
+                                                   name="name_of_student"
+                                                   placeholder="Enter student name" required="required"/>
+                                        </div>
+                                    </div>
+                                    <!-- Purpose Payment -->
+<!--                                                                        <div class="col-md-6">-->
+<!--                                                                            <div class="form-group">-->
+<!--                                                                                <label for="purpose_payment">Purpose Payment *</label>-->
+<!--                                                                                <select id="purpose_payment" class="form-control" name="purpose_payment"-->
+<!--                                                                                        required="required">-->
+<!--                                                                                    <option value="" disabled selected>&#45;&#45; Select purpose &#45;&#45;</option>-->
+<!--                                                                                    <option value="tuition">Tuition Fees</option>-->
+<!--                                                                                    <option value="hostel">Hostel Fees</option>-->
+<!--                                                                                    <option value="other">Other</option>-->
+<!--                                                                                </select>-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+                                    <div class="row">
+                                        <!-- Amount -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="amount">Amount *</label>
+                                                <input id="amount" type="number" class="form-control" name="amount"
+                                                       placeholder="Enter amount" required="required"/>
+                                            </div>
+                                        </div>
+                                        <!-- Phone number -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="phone_number">Phone Number *</label>
+                                                <input id="phone_number" type="tel" class="form-control"
+                                                       name="phone_number"
+                                                       placeholder="Enter phone number" required="required"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <!-- Email ID -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="email_id">Email ID *</label>
+                                                <input id="email_id" type="email" class="form-control" name="email_id"
+                                                       placeholder="Enter email ID" required="required"/>
+                                            </div>
+                                        </div>
+                                        <!-- Batch (Optional) -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="batch">Batch (Optional)</label>
+                                                <input id="batch" type="text" class="form-control" name="batch"
+                                                       placeholder="Enter batch"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <!-- Branch (Optional) -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="branch">Branch (Optional)</label>
+                                                <input id="branch" type="text" class="form-control" name="branch"
+                                                       placeholder="Enter branch"/>
+                                            </div>
+                                        </div>
+                                        <!-- Admission Number (Optional) -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="admission_number">Admission Number (Optional)</label>
+                                                <input id="admission_number" type="text" class="form-control"
+                                                       name="admission_number"
+                                                       placeholder="Enter admission number"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <button type="submit" class="btn btn-success">Pay Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="payment_success_template" name="Employee Joining Form Successfully Submitted">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure" id="oe_structure_website_form_contact_us_thanks_1"/>
+                <div class="container mt-4">
+                    <div class="row">
+                        <div class="col-lg-7 col-xl-6 mr-lg-auto oe_structure">
+                            <section class="pt40 s_text_block pb40 o_colored_level o_cc o_cc1"
+                                     data-snippet="s_text_block" data-name="Text">
+                                <div class="container">
+                                    <h3>Payment Successful</h3>
+                                    <p>Thank you,<t t-esc="name"/>! Your payment of ₹
+                                        <t t-esc="amount"/>
+                                        was successful.
+                                    </p>
+                                    <!--                                    <p class="text-center">We will get back to you shortly.</p>-->
+                                </div>
+                            </section>
+                        </div>
+                        <!--                        <div class="col-lg-4">-->
+                        <!--                            <t t-call="website.company_description"/>-->
+                        <!--                        </div>-->
+                    </div>
+                </div>
+                <div class="oe_structure" id="oe_structure_website_form_contact_us_thanks_2"/>
+            </div>
+        </t>
+    </template>
+    <template id="payment_failure_template" name="Payment Failure">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="alert alert-danger">
+                            <h3>Payment Failed</h3>
+                            <p>Sorry, your payment could not be processed. Please try again.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!--    <template id="payment_success_template" inherit_id="website.layout">-->
+    <!--        <div>-->
+    <!--            <h3>Payment Successful</h3>-->
+    <!--            <p>Thank you,<t t-esc="name"/>! Your payment of ₹-->
+    <!--                <t t-esc="amount"/>-->
+    <!--                was successful.-->
+    <!--            </p>-->
+    <!--        </div>-->
+    <!--    </template>-->
+
+
+</odoo>

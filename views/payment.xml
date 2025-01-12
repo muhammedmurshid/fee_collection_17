@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_payment_gateway_form" model="ir.ui.view">
+        <field name="name">payment.gateway.form</field>
+        <field name="model">payment.gateway</field>
+        <field name="arch" type="xml">
+            <form>
+                <headers>
+                    <button name="get_data" type="object" string="Initiate Payment"
+                                class="btn-primary"/>
+                </headers>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="amount"/>
+                        <field name="purpose"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="reference_no"/>
+                    </group>
+                    <footer>
+
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="payment_report_action" model="ir.actions.act_window">
+        <field name="name">Payment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">payment.gateway</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!--Menu Item for the model Dashboard Blocks-->
+
+    <menuitem name="Payment" id="payment_report_menu"
+              parent="fee_collection_report_main_menu"
+              sequence="2" action="payment_report_action"/>
+</odoo>
