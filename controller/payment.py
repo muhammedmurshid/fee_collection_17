@@ -28,7 +28,7 @@ class QuickPayController(http.Controller):
                 'phone': phone,
                 'refno': kwargs.get('Refno'),
                 'branch': kwargs.get('branch'),
-                # 'email_id': kwargs.get('email_id'),
+                'email': kwargs.get('email_id'),
                 'batch': kwargs.get('batch'),
                 'admission_no': kwargs.get('admission_number'),
             })

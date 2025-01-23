@@ -9,29 +9,39 @@
             <form string="Quick Pay">
                 <header>
                     <field name="state" widget="statusbar"/>
-                    <button name="act_assign_to_wallet" string="Add to Wallet" class="oe_highlight" type="object" invisible="state in ('done')"/>
+                    <button name="act_assign_to_wallet" string="Add to Wallet" class="oe_highlight" type="object"
+                            invisible="state in ('done')"/>
                 </header>
                 <sheet>
+<!--                    <widget name="web_ribbon" title="Lost" bg_color="text-bg-danger" invisible="state != 'lost'"/>-->
+                    <widget name="web_ribbon" title="Added Wallet" bg_color="text-bg-success"
+                            invisible="state != 'done'"/>
                     <group>
                         <group>
                             <field name="name"/>
                             <field name="phone"/>
-                            <field name="amount"/>
+                            <field name="email"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="amount" widget="monetary"/>
                             <field name="refno"/>
-                            <field name="state" widget="badge"/>
+                            <field name="added_date"/>
+                            <field name="branch"/>
+                            <field name="batch"/>
+
 
                         </group>
                         <group>
                             <field name="admission_no"/>
-                            <field name="other_client"/>
-                            <field name="other_purpose"/>
+<!--                            <field name="other_client"/>-->
+<!--                            <field name="other_purpose"/>-->
                             <field name="purpose"/>
                             <field name="other_amount"/>
                             <field name="other_phone"/>
                             <field name="role"/>
-<!--                            <field name="purpose"/>-->
-                            <field name="branch"/>
-                            <field name="batch"/>
+                            <field name="reconciliation"/>
+                            <field name="reconciliation_date"/>
+                            <!--                            <field name="purpose"/>-->
+
 
 
                         </group>
@@ -51,11 +61,20 @@
         <field name="name">Quick Pay</field>
         <field name="model">fee.quick.pay</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree multi_edit="1">
+                <field name="added_date" string="Date"/>
                 <field name="name"/>
                 <field name="phone"/>
-                <field name="amount"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="purpose"/>
+                <field name="amount" widget="monetary"/>
                 <field name="refno"/>
+                <field name="reconciliation"/>
+                <field name="reconciliation_date"/>
+                <button name="act_assign_to_wallet" string="Add to Wallet" class="oe_highlight" type="object"
+                        invisible="state in ('done')"/>
+
+                <field name="state" widget="badge" decoration-success="state == 'done'" decoration-info="state == 'draft'"/>
             </tree>
 
         </field>
@@ -70,7 +89,7 @@
     <menuitem name="Fee Collection"
               id="model_fee_collection_main_menu"
               action="model_quick_pay_menu_action"
-              web_icon="fee_collection,static/description/icon.png"
+              web_icon="fee_collection_17,static/description/icon.png"
               sequence="5"/>
 
     <menuitem name="Quick Pay"
