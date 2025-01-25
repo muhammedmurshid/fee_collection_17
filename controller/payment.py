@@ -34,7 +34,7 @@ class QuickPayController(http.Controller):
             })
 
             # Return success response
-            sample_link = "https://localhost:8069/quick_pay?Name=None&Purpose=admission_fee&Amount=None&Phone=None&Refno=None&branch=None&email_id=None&batch=ca&admission_number="
+            sample_link = "http://localhost:8080/quick_pay?Name=None&Purpose=admission_fee&Amount=None&Phone=None&Refno=None&branch=None&email_id=None&batch=ca&admission_number="
             response_data = {
                 'status': 'success',
                 'message': 'Quick pay record created successfully',
