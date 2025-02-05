@@ -22,7 +22,7 @@
                             <field name="phone"/>
                             <field name="email"/>
                             <field name="currency_id" invisible="1"/>
-                            <field name="amount" widget="monetary"/>
+                            <field name="amount"/>
                             <field name="refno"/>
                             <field name="added_date"/>
                             <field name="branch"/>
@@ -67,7 +67,7 @@
                 <field name="phone"/>
                 <field name="currency_id" invisible="1"/>
                 <field name="purpose"/>
-                <field name="amount" widget="monetary"/>
+                <field name="amount"/>
                 <field name="refno"/>
                 <field name="reconciliation"/>
                 <field name="reconciliation_date"/>
