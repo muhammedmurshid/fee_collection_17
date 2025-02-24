@@ -19,7 +19,7 @@
                     <group>
                         <group>
                             <field name="name"/>
-                            <field name="phone"/>
+                            <field name="phone" />
                             <field name="email"/>
                             <field name="currency_id" invisible="1"/>
                             <field name="amount"/>
@@ -65,7 +65,7 @@
                 <field name="added_date" string="Date"/>
                 <field name="name"/>
                 <field name="phone"/>
-                <field name="currency_id" invisible="1"/>
+                <field name="currency_id" optional="hide"/>
                 <field name="purpose"/>
                 <field name="amount"/>
                 <field name="refno"/>
