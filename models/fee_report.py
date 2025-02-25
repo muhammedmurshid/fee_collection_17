@@ -6,6 +6,7 @@ class FeeQuickPayLogic(models.Model):
     _name = 'fee.quick.pay'
     _description = 'Fee Quick Pay'
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order = 'id desc'
 
     admission_no = fields.Char(string='Admission No')
     # other_client = fields.Char(string='Other Client')
