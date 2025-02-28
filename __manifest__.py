@@ -16,6 +16,7 @@
     ],
     'data': [
         # 'security/ir.model.access.csv',  # Access rights
+        'security/groups.xml',
         'security/ir.model.access.csv',
         'views/quick_pay_report.xml',
         # 'views/payment.xml',

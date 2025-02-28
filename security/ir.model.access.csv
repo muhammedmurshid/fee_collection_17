@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
-access_fee_quick_pay_admin,access_fee_collection,model_fee_quick_pay,,1,1,1,1
+access_fee_quick_pay_accounts,access_fee_collection,model_fee_quick_pay,fee_collection_17.group_fee_collection_accounts,1,1,1,1
+access_fee_quick_pay_admission_team,access_fee_quick_pay_admission_team,model_fee_quick_pay,fee_collection_17.group_fee_collection_admission_team,1,1,1,1
