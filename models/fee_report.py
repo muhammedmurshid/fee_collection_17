@@ -41,7 +41,7 @@ class FeeQuickPayLogic(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('Students'),
             'res_model': 'op.student',
-            'domain': [('mobile', 'ilike', self.phone)],
+            # 'domain': [('mobile', 'ilike', self.phone)],
             'context': {
                 # 'active_test': self.active,
                 'default_amount': self.amount,
