@@ -27,23 +27,19 @@
                             <field name="added_date"/>
                             <field name="branch"/>
                             <field name="batch"/>
-
-
                         </group>
                         <group>
                             <field name="admission_no"/>
 <!--                            <field name="other_client"/>-->
 <!--                            <field name="other_purpose"/>-->
                             <field name="purpose"/>
+                            <field name="student_id" invisible="1"/>
                             <field name="other_amount"/>
                             <field name="other_phone"/>
                             <field name="role"/>
                             <field name="reconciliation"/>
                             <field name="reconciliation_date"/>
                             <!--                            <field name="purpose"/>-->
-
-
-
                         </group>
 
                     </group>
@@ -66,6 +62,7 @@
                 <field name="name"/>
                 <field name="phone"/>
                 <field name="currency_id" optional="hide"/>
+<!--                <field name="student_id"/>-->
                 <field name="purpose"/>
                 <field name="amount"/>
                 <field name="refno"/>
@@ -73,8 +70,8 @@
                 <field name="reconciliation_date"/>
                 <button name="act_assign_to_wallet" string="Add to Wallet" class="oe_highlight" type="object"
                         invisible="state in ('done')"/>
-
                 <field name="state" widget="badge" decoration-success="state == 'done'" decoration-info="state == 'draft'"/>
+                <button name="act_print_invoice" type="object" string=" Receipt" class="fa fa-download" invisible="state == 'draft'"/>
             </tree>
 
         </field>

@@ -20,7 +20,8 @@
         'security/ir.model.access.csv',
         'views/quick_pay_report.xml',
         # 'views/payment.xml',
-        'views/payment_web_form.xml'
+        'views/payment_web_form.xml',
+        'views/receipt.xml'
 
     ],
 

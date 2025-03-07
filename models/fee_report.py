@@ -1,6 +1,6 @@
 from odoo import models, fields, api, _
 from datetime import date, datetime, time
-
+from num2words import num2words
 
 class FeeQuickPayLogic(models.Model):
     _name = 'fee.quick.pay'
@@ -16,6 +16,7 @@ class FeeQuickPayLogic(models.Model):
          ('ima_exam_payment', 'IMA Exam Payment'), ('acca_board_registration', 'Acca Board Registration'),
          ('acca_exam_payment', 'ACCA Exam Payment'), ('cia_membership_fee', 'CIA Membership Fee'),  ('missing_added', 'Missing Added'),], string='Purpose')
     other_phone = fields.Char(string='Other Phone')
+    company_id = fields.Many2one('res.company', default=lambda self: self.env.company)
     currency_id = fields.Many2one(
         'res.currency',
         string="Currency",
@@ -34,6 +35,7 @@ class FeeQuickPayLogic(models.Model):
     reconciliation = fields.Boolean(string="Reconciliation")
     reconciliation_date = fields.Date(string="Reconciliation Date")
     added_date = fields.Datetime(string="Added Date", default=lambda self: datetime.now(),)
+    student_id = fields.Many2one('op.student', string="Student")
 
     def act_assign_to_wallet(self):
         print('hi')
@@ -50,9 +52,20 @@ class FeeQuickPayLogic(models.Model):
             'view_mode': 'tree,form',
         }
 
+    amount_in_words = fields.Char(string="Amount in Words", compute="_compute_amount_in_words", store=1)
+
+    @api.depends('amount')
+    def _compute_amount_in_words(self):
+        print('workssssss')
+        for i in self:
+            i.amount_in_words = num2words(i.amount, lang='en').upper()
+
     @api.onchange('reconciliation')
     def _onchange_reconciliation(self):
         if self.reconciliation == True:
             self.reconciliation_date = datetime.now()
         else:
             self.reconciliation_date = False
+
+    def act_print_invoice(self):
+        return self.env.ref('fee_collection_17.action_payment_quick_pay_receipt').report_action(self)
