@@ -71,7 +71,7 @@
                 <button name="act_assign_to_wallet" string="Add to Wallet" class="oe_highlight" type="object"
                         invisible="state in ('done')"/>
                 <field name="state" widget="badge" decoration-success="state == 'done'" decoration-info="state == 'draft'"/>
-                <button name="act_print_invoice" type="object" string=" Receipt" class="fa fa-download" invisible="state == 'draft'"/>
+<!--                <button name="act_print_invoice" type="object" string=" Receipt" class="fa fa-download" invisible="state == 'draft'"/>-->
             </tree>
 
         </field>
@@ -85,6 +85,7 @@
             <search>
                 <!-- Default filter for Today -->
                 <filter string="Not Assigned" name="not_assigned" domain="[('state', '=', 'draft')]"/>
+                <filter string="Assigned" name="assigned" domain="[('state', '!=', 'draft')]"/>
                 <field name="name" string="Name"/>
                 <field name="phone" string="Phone"/>
                 <field name="purpose" string="Purpose"/>
