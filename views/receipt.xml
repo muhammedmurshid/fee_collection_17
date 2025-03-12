@@ -184,7 +184,7 @@
                                 </span>
                             </td>
                             <td>:&amp;nbsp;
-                                <span t-field="doc.student_id.gr_no"/>
+                                <span t-field="doc.admission_no"/>
                             </td>
 
                         </tr>
@@ -320,4 +320,5 @@
             </t>
         </t>
     </template>
+
 </odoo>
