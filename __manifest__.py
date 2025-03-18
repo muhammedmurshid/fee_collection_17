@@ -10,7 +10,7 @@
     'category': 'Specific Category',
     'license': 'LGPL-3',
     'depends': [
-        'base','website', 'openeducat_core'  # List of module dependencies
+        'base', 'website', 'openeducat_core'  # List of module dependencies
 
         # Add other module dependencies here
     ],
@@ -24,6 +24,13 @@
         'views/receipt.xml'
 
     ],
+    'assets': {
+        'web.assets_backend': [
+
+            '/fee_collection_17/static/src/css/styles.css',
+
+        ],
+    },
 
     'installable': True,
     'application': False,

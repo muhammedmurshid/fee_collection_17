@@ -1,0 +1,4 @@
+.o_list_view tbody td.wallet-amount {
+    background-color: #f7fafa !important; /* Change to your preferred color */
+    font-weight: bold;
+}

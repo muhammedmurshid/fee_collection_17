@@ -36,6 +36,69 @@ class FeeQuickPayLogic(models.Model):
     reconciliation_date = fields.Date(string="Reconciliation Date")
     added_date = fields.Datetime(string="Added Date", default=lambda self: datetime.now(),)
     student_id = fields.Many2one('op.student', string="Student")
+    assigned_by = fields.Many2one('res.users', string="Assigned By")
+    assigned_date = fields.Datetime(string="Assigned Date")
+    receipt_no = fields.Char(string="Receipt No",  readonly=True, copy=False)
+
+    @api.depends('amount','purpose')
+    def _compute_tax_amount(self):
+        for i in self:
+            if i.amount != 0:
+                if i.purpose in ['admission_fee','coaching_fee','missing_added']:
+                    i.tax_amount = i.amount * 18/118
+                    print('mur')
+                else:
+                    print('pur')
+                    i.tax_amount = 0
+
+    tax_amount = fields.Float(string="Tax", compute="_compute_tax_amount", store=1)
+
+    @api.depends('tax_amount')
+    def _compute_spliting_gst(self):
+        for i in self:
+            if i.tax_amount != 0:
+                i.cgst_amount = i.tax_amount / 2
+                i.sgst_amount = i.tax_amount / 2
+                i.amount_exc_tax = i.amount - i.tax_amount
+            else:
+                i.cgst_amount = 0
+                i.sgst_amount = 0
+                i.amount_exc_tax = i.amount
+
+    cgst_amount = fields.Float(string="CGST", compute="_compute_spliting_gst", store=1)
+    sgst_amount = fields.Float(string="SGST", compute="_compute_spliting_gst", store=1)
+    amount_exc_tax = fields.Float(string="Exc Tax", compute="_compute_spliting_gst", store=1)
+    # @api.model
+    # def create(self, vals):
+    #     if not vals.get('receipt_no'):
+    #         vals['receipt_no'] = self._generate_receipt_number()
+    #     return super(FeeQuickPayLogic, self).create(vals)
+
+    def _generate_receipt_number(self):
+        """Generate a receipt number based on the financial year (April - March)."""
+        today = date.today()
+        year = today.year
+        if today.month < 4:  # If Jan, Feb, or March, use the previous year
+            start_year = year - 1
+            end_year = year
+        else:
+            start_year = year
+            end_year = year + 1
+
+        # Format financial year
+        fy_string = f"{start_year}-{str(end_year)[-2:]}"
+
+        # Get the last record of the same financial year
+        last_receipt = self.search([('receipt_no', 'like', f'RCPT-{fy_string}/%')], order='id desc', limit=1)
+
+        if last_receipt and last_receipt.receipt_no:
+            last_number = int(last_receipt.receipt_no.split('/')[-1])  # Extract last sequence number
+            new_number = last_number + 1
+        else:
+            new_number = 1  # Start from 1 if no previous record exists
+
+        # Generate new receipt number
+        return f"RCPT-{fy_string}/{new_number:02d}"
 
     def act_assign_to_wallet(self):
         print('hi')
@@ -69,3 +132,6 @@ class FeeQuickPayLogic(models.Model):
 
     def act_print_invoice(self):
         return self.env.ref('fee_collection_17.action_payment_quick_pay_receipt').report_action(self)
+
+    def act_print_with_tax_receipt(self):
+        return self.env.ref('fee_collection_17.receipt_with_tax_quick_pay').report_action(self)
