@@ -31,6 +31,7 @@ class FeeQuickPayLogic(models.Model):
     phone = fields.Char(string='Phone')
     amount = fields.Float(string='Amount')
     refno = fields.Char(string='Ref No')
+    payment_mode = fields.Selection([('Bank','Bank'), ('Cash','Cash')], default='Bank')
     state = fields.Selection([('draft', 'Pending'), ('done', 'Added Wallet')], default="draft")
     reconciliation = fields.Boolean(string="Reconciliation")
     reconciliation_date = fields.Date(string="Reconciliation Date")

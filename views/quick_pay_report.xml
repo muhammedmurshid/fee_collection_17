@@ -35,7 +35,8 @@
                             <field name="purpose"/>
                             <field name="student_id" invisible="1"/>
                             <field name="other_amount"/>
-                            <field name="other_phone"/>
+                            <field name="other_phone" invisible="1"/>
+                            <field name="payment_mode"/>
                             <field name="role"/>
                             <field name="reconciliation"/>
                             <field name="reconciliation_date"/>

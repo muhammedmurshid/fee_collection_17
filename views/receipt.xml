@@ -166,6 +166,14 @@
                                     <span t-field="doc.student_id.state_id.name"/>
                                 </td>
                             </td>
+                            <td align="right">
+                                <span>
+                                    <strong>Payment Mode</strong>
+                                </span>
+                            </td>
+                            <td>:&amp;nbsp;
+                                <span t-field="doc.payment_mode"/>
+                            </td>
                         </tr>
 
                     </table>
@@ -388,6 +396,7 @@
                                     <strong>Address</strong>
                                 </span>
                             </td>
+
                             <td>:&amp;nbsp;
                                 <span t-field="doc.student_id.street"/>
                             </td>
@@ -409,6 +418,14 @@
                                 <td>:&amp;nbsp;
                                     <span t-field="doc.student_id.state_id.name"/>
                                 </td>
+                            </td>
+                            <td align="right">
+                                <span>
+                                    <strong>Payment Mode</strong>
+                                </span>
+                            </td>
+                            <td>:&amp;nbsp;
+                                <span t-field="doc.payment_mode"/>
                             </td>
                         </tr>
 
