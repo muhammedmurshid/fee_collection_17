@@ -88,11 +88,11 @@
                 <field name="state" widget="badge" decoration-success="state == 'done'"
                        decoration-info="state == 'draft'"/>
 
-                <button name="act_print_invoice" type="object" string=" Receipt" class="fa fa-download"
-                        invisible="purpose in ['admission_fee','coaching_fee','missing_added'] or state == 'draft'"/>
-                <button name="act_print_with_tax_receipt" type="object"
-                        invisible="purpose not in ['admission_fee','coaching_fee','missing_added'] or state == 'draft'"
-                        string=" Receipt" class="fa fa-download"/>
+<!--                <button name="act_print_invoice" type="object" string=" Receipt" class="fa fa-download"-->
+<!--                        invisible="purpose in ['admission_fee','coaching_fee','missing_added'] or state == 'draft'"/>-->
+<!--                <button name="act_print_with_tax_receipt" type="object"-->
+<!--                        invisible="purpose not in ['admission_fee','coaching_fee','missing_added'] or state == 'draft'"-->
+<!--                        string=" Receipt" class="fa fa-download"/>-->
             </tree>
 
         </field>
