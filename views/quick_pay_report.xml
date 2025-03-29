@@ -73,7 +73,7 @@
                 <field name="currency_id" optional="hide"/>
                 <!--                <field name="student_id"/>-->
                 <field name="purpose"/>
-                <field name="amount" widget="monetary" class="wallet-amount"/>
+                <field name="amount" widget="monetary" class="wallet-amount" string="Total Amount" sum="Total Amount"/>
                 <field name="refno"/>
                 <field name="branch"/>
                 <field name="batch"/>
