@@ -1,6 +1,8 @@
 from odoo import models, fields, api, _
 from datetime import date, datetime, time
 from num2words import num2words
+from odoo.exceptions import ValidationError
+
 
 class FeeQuickPayLogic(models.Model):
     _name = 'fee.quick.pay'
@@ -31,7 +33,7 @@ class FeeQuickPayLogic(models.Model):
     phone = fields.Char(string='Phone')
     amount = fields.Float(string='Amount')
     refno = fields.Char(string='Ref No')
-    payment_mode = fields.Selection([('Bank','Bank'), ('Cash','Cash')], default='Bank')
+    payment_mode = fields.Selection([('Bank','Bank'), ('Cash','Cash')])
     state = fields.Selection([('draft', 'Pending'), ('done', 'Added Wallet')], default="draft")
     reconciliation = fields.Boolean(string="Reconciliation")
     reconciliation_date = fields.Date(string="Reconciliation Date")
@@ -100,6 +102,18 @@ class FeeQuickPayLogic(models.Model):
 
         # Generate new receipt number
         return f"RCPT-{fy_string}/{new_number:02d}"
+
+    _sql_constraints = [
+        ('refno_unique', 'UNIQUE(model, refno)', "Field Reference Number must be unique per model."),
+
+    ]
+
+    @api.model
+    def create(self, vals):
+        existing = self.env['fee.quick.pay'].search([('refno', '=', vals.get('refno'))], limit=1)
+        if existing:
+            raise ValidationError("Reference Number must be unique per model.")
+        return super(FeeQuickPayLogic, self).create(vals)
 
     def act_assign_to_wallet(self):
         print('hi')

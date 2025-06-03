@@ -25,8 +25,8 @@
                             <!--                            <field name="amount"/>-->
                             <field name="refno"/>
                             <field name="added_date"/>
-                            <field name="branch"/>
-                            <field name="batch"/>
+                            <field name="branch" string="Batch"/>
+                            <field name="batch" string="Branch"/>
                         </group>
                         <group>
                             <field name="admission_no"/>
@@ -75,13 +75,13 @@
                 <field name="purpose"/>
                 <field name="amount" widget="monetary" class="wallet-amount" string="Total Amount" sum="Total Amount"/>
                 <field name="refno"/>
-                <field name="branch"/>
-                <field name="batch"/>
+                <field name="branch" string="Batch"/>
+                <field name="batch" string="Branch"/>
                 <field name="admission_no"/>
                 <field name="reconciliation"/>
                 <field name="reconciliation_date"/>
                 <field name="student_id" string="Assigned To"/>
-                <field name="assigned_by"/>
+                <field name="assigned_by" widget="many2one_avatar"/>
                 <field name="assigned_date"/>
                 <button name="act_assign_to_wallet" string="Add to Wallet" class="oe_highlight" type="object"
                         invisible="state in ('done')"/>
