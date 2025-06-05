@@ -25,8 +25,8 @@
                             <!--                            <field name="amount"/>-->
                             <field name="refno"/>
                             <field name="added_date"/>
-                            <field name="branch" string="Batch"/>
-                            <field name="batch" string="Branch"/>
+                            <field name="branch"/>
+                            <field name="batch"/>
                         </group>
                         <group>
                             <field name="admission_no"/>
@@ -75,8 +75,8 @@
                 <field name="purpose"/>
                 <field name="amount" widget="monetary" class="wallet-amount" string="Total Amount" sum="Total Amount"/>
                 <field name="refno"/>
-                <field name="branch" string="Batch"/>
-                <field name="batch" string="Branch"/>
+                <field name="branch"/>
+                <field name="batch"/>
                 <field name="admission_no"/>
                 <field name="reconciliation"/>
                 <field name="reconciliation_date"/>
